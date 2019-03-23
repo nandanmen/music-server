@@ -1,0 +1,26 @@
+{
+  "name": "304-music-server",
+  "version": "0.0.1",
+  "description": "Express + sql server for CPSC304 final project",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --exec babel-node src/index.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "pg": "^7.9.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.0",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.4.2",
+    "babel-eslint": "^10.0.1",
+    "dotenv": "^7.0.0",
+    "eslint": "^5.15.3",
+    "eslint-config-prettier": "^4.1.0",
+    "nodemon": "^1.18.10",
+    "prettier": "^1.16.4"
+  }
+}
