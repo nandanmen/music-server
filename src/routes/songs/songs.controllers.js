@@ -3,7 +3,7 @@ import db from '../../utils/db';
 const getOne = async (req, res) => {
   const { id } = req.params;
   try {
-    // TODO: Update this query to get song + artist info
+    // TODO: Update this query to get song info
     const data = await db.one('', []);
     return res.status(200).json({ data });
   } catch (error) {
@@ -13,23 +13,17 @@ const getOne = async (req, res) => {
 
 const getLiked = async (req, res) => {
   const { id } = req.user;
+  const { album } = req.query;
   try {
-    // TODO: Query all songs liked by this user
-    const data = await db.any('', []);
+    let data;
+    if (!album) {
+      // TODO: Query all songs liked by this user
+      data = await db.any('', []);
+    } else {
+      // TODO: Query all albums liked by this user
+      data = await db.any('');
+    }
     return res.status(200).json({ data });
-  } catch (error) {
-    res.status(500).json({ error });
-  }
-};
-
-const authorize = async (req, res, next) => {
-  const { id } = req.user;
-  try {
-    const data = await db.oneOrNone('select * from artist where user_id = $1', [
-      id
-    ]);
-    if (!data) return res.status(401).json({ error: 'NOT AUTHORIZED' });
-    next();
   } catch (error) {
     res.status(500).json({ error });
   }

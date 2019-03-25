@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import controllers from './songs.controllers';
+import { authorizeArtist } from '../../utils/auth';
 
 const router = Router();
 
@@ -8,7 +9,7 @@ router.get('/', controllers.getLiked);
 router.get('/:id', controllers.getOne);
 
 /* Artist only song routes */
-router.use('/me', controllers.authorize);
+router.use('/me', authorizeArtist);
 
 router
   .route('/me')
@@ -17,7 +18,6 @@ router
 
 router
   .route('/me/:id')
-  .get(controllers.getOne)
   .put(controllers.updateOne)
   .delete(controllers.deleteOne);
 

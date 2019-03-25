@@ -122,3 +122,16 @@ export const protectRoutesHandler = async (req, res, next) => {
     return res.status(500).send({ error });
   }
 };
+
+export const authorizeArtist = async (req, res, next) => {
+  const { id } = req.user;
+  try {
+    const data = await db.oneOrNone('select * from artist where user_id = $1', [
+      id
+    ]);
+    if (!data) return res.status(401).json({ error: 'NOT AUTHORIZED' });
+    next();
+  } catch (error) {
+    res.status(500).json({ error });
+  }
+};

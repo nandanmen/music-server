@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import controllers from './playlists.controllers';
+import controllers from './playlist.controller';
 
 const router = Router();
 
