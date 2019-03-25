@@ -31,6 +31,7 @@ export const verifyToken = token =>
  * password.
  * @param {string} hashed
  * @param {string} password
+ * @returns {Promise<boolean>}
  */
 export const compare = (hashed, password) =>
   new Promise((resolve, reject) => {
@@ -104,7 +105,7 @@ export const protectRoutesHandler = async (req, res, next) => {
 
   const token = auth.split('Bearer ')[1];
   try {
-    const id = await verifyToken(token);
+    const { id } = await verifyToken(token);
     const artist = await db.oneOrNone(
       'select bio, num_followers from artisttest where uid = $1',
       [Number(id)]
@@ -113,7 +114,8 @@ export const protectRoutesHandler = async (req, res, next) => {
       'select id, name, email from usertest where id = $1',
       [Number(id)]
     );
-    req.user = { ...user, ...artist, bio: artist.bio.trim() };
+    if (artist && artist.bio) artist.bio = artist.bio.trim();
+    req.user = { ...user, ...artist };
     next();
   } catch (error) {
     console.error(error);
