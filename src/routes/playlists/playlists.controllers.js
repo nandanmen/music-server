@@ -61,10 +61,11 @@ const updateOne = async (req, res) => {
 
 const deleteOne = async (req, res) => {
   const { id } = req.user;
+  const { name } = req.body;
   try {
     const data = await db.one(
-      'delete from playlist where user_id = $1 returning id',
-      [id]
+      'delete from playlist where user_id = $1 and playlist_name = $2 returning id',
+      [id, name]
     );
     return res.status(201).json({ data });
   } catch (error) {
