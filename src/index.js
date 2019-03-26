@@ -9,6 +9,7 @@ import {
 } from './utils/auth';
 import songsRouter from './routes/songs/songs.router';
 import userRouter from './routes/user/user.router';
+import selfRouter from './routes/self/self.router';
 
 const app = express();
 const PORT = process.env.PORT;
@@ -25,6 +26,7 @@ app.post('/login', loginHandler);
 app.use('/api', protectRoutesHandler);
 app.use('/api/song', songsRouter);
 app.use('/api/user', userRouter);
+app.use('/api/me', selfRouter);
 
 /* Initialize server */
 app.listen(PORT, () => {

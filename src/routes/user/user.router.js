@@ -16,10 +16,4 @@ router
 router.use('/:id/playlist', playlistRouter);
 router.use('/:id/album', albumRouter);
 
-router
-  .route('/me')
-  .get(controllers.getSelf)
-  .put(controllers.updateSelf)
-  .delete(controllers.deleteSelf);
-
 export default router;

@@ -52,24 +52,16 @@ export const loginHandler = async (req, res) => {
 export const protectRoutesHandler = async (req, res, next) => {
   const error = 'NOT AUTHORIZED';
 
-  const auth = req.headers.authorization;
-  if (!auth || !auth.startsWith('Bearer ')) {
+  const { id } = req.query;
+  if (!id) {
     return res.status(401).send({ error });
   }
-
-  const token = auth.split('Bearer ')[1];
   try {
-    const { id } = await verifyToken(token);
-    const artist = await db.oneOrNone(
-      'select bio, num_followers from artisttest where uid = $1',
-      [Number(id)]
-    );
-    const user = await db.one(
-      'select id, name, email from usertest where id = $1',
-      [Number(id)]
-    );
-    if (artist && artist.bio) artist.bio = artist.bio.trim();
-    req.user = { ...user, ...artist };
+    const user = await db.oneOrNone('select * from user_1 where user_id = $1', [
+      Number(id)
+    ]);
+    if (!user) return res.status(404).send({ error: 'User does not exist' });
+    req.user = { id };
     next();
   } catch (error) {
     console.error(error);
