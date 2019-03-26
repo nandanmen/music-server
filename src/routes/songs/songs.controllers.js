@@ -76,7 +76,6 @@ const deleteOne = async (req, res) => {
 export default {
   getOne,
   getLiked,
-  authorize,
   getMany,
   createOne,
   updateOne,

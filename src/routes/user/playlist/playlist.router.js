@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import controllers from './playlist.controller';
+import controllers from './playlist.controllers';
 
 const router = Router();
 
@@ -11,6 +11,7 @@ router
 router
   .route('/:name')
   .get(controllers.getOne)
+  .post(controllers.updateSong)
   .put(controllers.updateOne)
   .delete(controllers.deleteOne);
 
