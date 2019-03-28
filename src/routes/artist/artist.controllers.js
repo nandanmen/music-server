@@ -75,3 +75,22 @@ export const getOne = async (req, res) => {
     res.status(500).json({ error: err });
   }
 };
+
+export const getFollowed = async (req, res) => {
+  const { id } = req.params;
+  const { id: uid } = req.query;
+  try {
+    const data = await db.oneOrNone(
+      `
+      select * from follows
+      where user_id_1 = $1
+      and user_id_2 = $2
+      `,
+      [uid, id]
+    );
+    res.status(200).json({ follows: Boolean(data) });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err });
+  }
+};

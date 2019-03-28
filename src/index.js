@@ -1,6 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import logger from 'morgan';
 import 'dotenv/config';
 import {
   registerHandler,
@@ -20,6 +21,7 @@ const PORT = process.env.PORT;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
+app.use(logger('dev'));
 
 /* Authorization routes */
 app.post('/register', registerHandler);

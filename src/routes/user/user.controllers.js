@@ -1,7 +1,8 @@
 import db from '../../utils/db';
 
 export const followOne = async (req, res) => {
-  const { id: self, uid } = req.query;
+  const { id: self } = req.query;
+  const { id: uid } = req.params;
   try {
     await db.none(
       `
@@ -12,12 +13,14 @@ export const followOne = async (req, res) => {
     );
     res.status(201).end();
   } catch (error) {
+    console.error(error);
     res.status(500).json({ error });
   }
 };
 
 export const unfollowOne = async (req, res) => {
-  const { id: self, uid } = req.query;
+  const { id: self } = req.query;
+  const { id: uid } = req.params;
   try {
     await db.none(
       `
@@ -29,6 +32,7 @@ export const unfollowOne = async (req, res) => {
     );
     res.status(200).end();
   } catch (error) {
+    console.error(error);
     res.status(500).json({ error });
   }
 };

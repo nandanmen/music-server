@@ -23,6 +23,7 @@
     "dotenv": "^7.0.0",
     "eslint": "^5.15.3",
     "eslint-config-prettier": "^4.1.0",
+    "morgan": "^1.9.1",
     "nodemon": "^1.18.10",
     "prettier": "^1.16.4"
   }

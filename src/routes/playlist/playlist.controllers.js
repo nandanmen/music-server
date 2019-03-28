@@ -121,6 +121,7 @@ const deleteOne = async (req, res) => {
       `,
       [id, name]
     );
+    res.status(200).end();
   } catch (error) {
     return res.status(500).json({ error });
   }

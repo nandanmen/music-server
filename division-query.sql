@@ -6,18 +6,37 @@
 -- i think you mentioned that you changed certain user ids. could you see your user ids match with these examples ?
 
 
-insert into Likes values(111,101);
+insert into Likes
+values(111, 101);
 
-insert into Likes values(111,104);
+insert into Likes
+values(111, 104);
 
-insert into Likes values(111,111);
+insert into Likes
+values(111, 111);
 
-insert into Likes values(111,112);
+insert into Likes
+values(111, 112);
 
-insert into Likes values(113,102);
+insert into Likes
+values(113, 102);
 
-insert into Likes values(113,103);
+insert into Likes
+values(113, 103);
 
-insert into Likes values(113,115);
+insert into Likes
+values(113, 115);
 
-insert into Likes values(113,116);
+insert into Likes
+values(113, 116);
+
+select s.song_id,
+  s.song_id
+in
+(
+  select l.song_id
+from likes l
+where l.user_id = 111
+)
+as liked
+from song s
