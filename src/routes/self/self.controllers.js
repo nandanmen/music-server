@@ -25,7 +25,7 @@ const getSelf = async (req, res) => {
     );
     const playlists = await db.any(
       `
-      select p.user_id, p.playlist_name, p.no_of_songs, p.genre
+      select p.user_id, p.playlist_name, p.genre
       from playlist p
       where p.user_id = $1 
       `,
