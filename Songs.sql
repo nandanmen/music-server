@@ -131,7 +131,7 @@ create table InPlaylist
 	primary key (user_id, song_id, playlist_name),
 	foreign key (user_id) references user_2(user_id) on delete cascade,
 	foreign key (song_id) references song(song_id) on delete cascade,
-	foreign key (user_id, playlist_name) references playlist(user_id, playlist_name) on delete cascade
+	foreign key (user_id, playlist_name) references playlist(user_id, playlist_name) on update cascade on delete cascade
 );
 
 commit;
@@ -222,19 +222,19 @@ commit;
 
 
 insert into Artist
-values(116, 'Becky G incorporates rap and pop', 1765596);
+values(116, 'Rebbeca Marie Gomez (born March 2, 1997), known professionally as Becky G, is an American singer, songwriter and actress.', 1765596);
 
 insert into Artist
-values(117, 'Lana Del Rey (Elizabeth Woolridge Grant) makes pop music .', 17658696);
+values(117, 'Elizabeth Woolridge Grant (born June 21, 1985), known professionally as Lana Del Rey, is an American singer, songwriter, record producer, poet, model, and music video director.', 17658696);
 
 insert into Artist
-values(118, NULL, 14857658);
+values(118, 'Riley B. King (September 16, 1925 – May 14, 2015), known professionally as B.B. King, was an American blues singer, electric guitarist, songwriter, and record producer.', 14857658);
 
 insert into Artist
-values(119, NULL, 12345678);
+values(119, 'Christopher Alvin Stapleton (born April 15, 1978) is an American singer-songwriter, guitarist, and record producer.', 12345678);
 
 insert into Artist
-values(120, NULL, 56345678);
+values(120, 'Herbert Jeffrey Hancock (born April 12, 1940) is an American pianist, keyboardist, bandleader, composer and actor. Hancock started his career with Donald Byrd.', 56345678);
 
 commit;
 
@@ -400,10 +400,28 @@ insert into Likes
 values(113, 113);
 
 insert into Likes
+values(113, 102);
+
+insert into Likes
+values(113, 103);
+
+insert into Likes
 values(114, 100);
 
 insert into Likes
 values(115, 109);
+
+insert into Likes
+values(111, 101);
+
+insert into Likes
+values(111, 104);
+
+insert into Likes
+values(111, 111);
+
+insert into Likes
+values(111, 112);
 
 commit;
 

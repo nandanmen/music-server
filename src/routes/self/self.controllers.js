@@ -46,24 +46,6 @@ const getSelf = async (req, res) => {
   }
 };
 
-// TODO: Update self information
-const updateSelf = async (req, res) => {
-  try {
-  } catch (error) {
-    res.status(500).json({ error });
-  }
-};
-
-// TODO: Delete profile
-const deleteSelf = async (req, res) => {
-  try {
-  } catch (error) {
-    res.status(500).json({ error });
-  }
-};
-
 export default {
-  getSelf,
-  updateSelf,
-  deleteSelf
+  getSelf
 };

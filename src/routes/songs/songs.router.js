@@ -3,15 +3,6 @@ import controllers from './songs.controllers';
 
 const router = Router();
 
-router
-  .route('/')
-  .get(controllers.getMany)
-  .post(controllers.createOne);
-
-router
-  .route('/:id')
-  .get(controllers.getOne)
-  .put(controllers.updateOne)
-  .delete(controllers.deleteOne);
+router.get('/', controllers.getMany);
 
 export default router;

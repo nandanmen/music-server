@@ -1,41 +1,34 @@
 import db from '../../utils/db';
 
-// TODO: Get all followed users
-// Filter by artist
-const getMany = async (req, res) => {
+export const followOne = async (req, res) => {
+  const { id: self, uid } = req.query;
   try {
+    await db.none(
+      `
+      insert into follows
+      values ($1, $2)
+      `,
+      [self, uid]
+    );
+    res.status(201).end();
   } catch (error) {
     res.status(500).json({ error });
   }
 };
 
-// TODO: Get info about one user
-const getOne = async (req, res) => {
+export const unfollowOne = async (req, res) => {
+  const { id: self, uid } = req.query;
   try {
+    await db.none(
+      `
+      delete from follows
+      where user_id_1 = $1
+      and user_id_2 = $2
+      `,
+      [self, uid]
+    );
+    res.status(200).end();
   } catch (error) {
     res.status(500).json({ error });
   }
-};
-
-// TODO: Follow user
-const followOne = async (req, res) => {
-  try {
-  } catch (error) {
-    res.status(500).json({ error });
-  }
-};
-
-// TODO: Unfollow user
-const unfollowOne = async (req, res) => {
-  try {
-  } catch (error) {
-    res.status(500).json({ error });
-  }
-};
-
-export default {
-  getMany,
-  getOne,
-  followOne,
-  unfollowOne
 };

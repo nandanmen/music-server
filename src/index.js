@@ -10,6 +10,9 @@ import {
 import songsRouter from './routes/songs/songs.router';
 import userRouter from './routes/user/user.router';
 import selfRouter from './routes/self/self.router';
+import likesRouter from './routes/likes/likes.router';
+import playlistRouter from './routes/playlist/playlist.router';
+import artistRouter from './routes/artist/artist.router';
 
 const app = express();
 const PORT = process.env.PORT;
@@ -24,8 +27,11 @@ app.post('/login', loginHandler);
 
 /* API */
 app.use('/api', protectRoutesHandler);
+app.use('/api/likes', likesRouter);
+app.use('/api/playlist', playlistRouter);
 app.use('/api/song', songsRouter);
 app.use('/api/user', userRouter);
+app.use('/api/artist', artistRouter);
 app.use('/api/me', selfRouter);
 
 /* Initialize server */

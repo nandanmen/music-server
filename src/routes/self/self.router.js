@@ -3,10 +3,6 @@ import controllers from './self.controllers';
 
 const router = Router();
 
-router
-  .route('/')
-  .get(controllers.getSelf)
-  .put(controllers.updateSelf)
-  .delete(controllers.deleteSelf);
+router.get('/', controllers.getSelf);
 
 export default router;
